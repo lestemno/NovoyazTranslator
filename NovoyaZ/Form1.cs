@@ -48,15 +48,61 @@ namespace Novoyaz
             { "английский", "старояз" }
         };
 
+        List<string> zapret = new List<string>()
+        {
+            "бунт",
+            "революция",
+            "восстание",
+            "братство",
+            "равенство",
+            "ненависть",
+            "мысль",
+            "идея",
+            "самостоятельность",
+            "анархия",
+            "право",
+            "справедливость",
+            "сексуальность",
+            "интимность",
+            "романтика",
+            "эротика",
+            "измена",
+            "счастье",
+            "радость",
+            "печаль",
+            "страх",
+            "тоска",
+            "грусть",
+            "ненужный",
+            "республика",
+            "оппозиция",
+            "заговор",
+            "забастовка",
+            "террор",
+            "критика",
+            "сомнение"
+        };
+
         public Form1()
         {
             InitializeComponent();
             this.Text = "Новояз Переводчик";
         }
 
+        private string deletezapretki(string text)
+        {
+            foreach (var word in zapret)
+            {
+                text = Regex.Replace(text, @"\b" + Regex.Escape(word) + @"\b", "", RegexOptions.IgnoreCase);
+            }
+            text = Regex.Replace(text, @"\s+", " ").Trim();
+            return text;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             string input = textBox1.Text;
+            input = deletezapretki(input);
             var sortedDict = dict.OrderByDescending(p => p.Key.Length);
             string output = input;
 
@@ -66,7 +112,9 @@ namespace Novoyaz
                 {
                     string tr = pair.Value;
                     if (char.IsUpper(m.Value[0]))
+                    {
                         return char.ToUpper(tr[0]) + tr.Substring(1);
+                    }
                     return tr;
                 },
                 RegexOptions.IgnoreCase);
@@ -74,5 +122,6 @@ namespace Novoyaz
 
             textBox2.Text = output;
         }
+
     }
 }
