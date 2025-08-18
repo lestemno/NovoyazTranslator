@@ -122,6 +122,5 @@ namespace Novoyaz
 
             textBox2.Text = output;
         }
-
     }
 }
