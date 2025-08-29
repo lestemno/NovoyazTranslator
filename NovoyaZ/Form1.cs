@@ -62,9 +62,6 @@ namespace Novoyaz
             "анархия",
             "право",
             "справедливость",
-            "сексуальность",
-            "интимность",
-            "романтика",
             "эротика",
             "измена",
             "счастье",
@@ -86,7 +83,7 @@ namespace Novoyaz
         public Form1()
         {
             InitializeComponent();
-            this.Text = "Новояз Переводчик";
+            this.Text = "НовоязПереводчик";
         }
 
         private string deletezapretki(string text)
@@ -121,6 +118,20 @@ namespace Novoyaz
             }
 
             textBox2.Text = output;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                Clipboard.SetText(textBox2.Text);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            textBox2.Clear();
         }
     }
 }
